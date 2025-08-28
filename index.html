@@ -4,10 +4,12 @@
   <meta charset="UTF-8">
   <meta name="theme-color" content="#9D1818">
   <title>Invito Interattivo</title>
+  <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
   <style>
     html, body {
       margin: 0;
       padding: 0;
+      width: 100%;
       height: 100%;
       overflow: hidden;
       background-color: #9D1818;
@@ -53,21 +55,36 @@
 </head>
 <body>
   <div id="overlay"></div>
-
   <div class="container">
     <img id="img1" src="https://raw.githubusercontent.com/stefanosallemi/laurea-elisabeth/8e62f0f71164910a757de1a0e80faaf878c2f90d/IMG_0551.jpeg">
-    <a href="https://www.google.com/maps?client=safari&rls=en&oe=UTF-8&um=1&ie=UTF-8&fb=1&gl=it&sa=X&geocode=KWdjGIuz235HMUIuA9piVNlL&daddr=Via+Beato+Pellegrino,+28,+35137+Padova+PD" target="_blank">
+    <a id="link" href="https://www.google.com/maps?client=safari&rls=en&oe=UTF-8&um=1&ie=UTF-8&fb=1&gl=it&sa=X&geocode=KWdjGIuz235HMUIuA9piVNlL&daddr=Via+Beato+Pellegrino,+28,+35137+Padova+PD" target="_blank">
       <img id="img2" src="https://raw.githubusercontent.com/stefanosallemi/laurea-elisabeth/8e62f0f71164910a757de1a0e80faaf878c2f90d/IMG_0552.jpeg">
     </a>
   </div>
-
   <script>
+    const jsConfetti = new JSConfetti();
+
     const img1 = document.getElementById("img1");
     const img2 = document.getElementById("img2");
+    const link = document.getElementById("link");
 
     img1.addEventListener("click", () => {
+      jsConfetti.addConfetti({
+        confettiNumber: 200,
+        confettiColors: ['#fff','#fcd','#fc0','#f0f']
+      });
       img1.style.display = "none";
       img2.style.display = "block";
+    });
+
+    img2.addEventListener("click", () => {
+      jsConfetti.addConfetti({
+        confettiNumber: 100,
+        confettiColors: ['#0f0','#ff0','#09f']
+      });
+      setTimeout(() => {
+        link.click();
+      }, 200);
     });
   </script>
 </body>
